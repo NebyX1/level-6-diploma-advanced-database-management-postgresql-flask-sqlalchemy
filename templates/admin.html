@@ -1,0 +1,54 @@
+{% extends 'layout.html' %} {% block content %}
+
+<div id="AdminDiv">
+  <h1>Create Game</h1>
+  <form method="POST" action="{{ url_for('admin_page') }}">
+    {{ form.hidden_tag() }}
+    <div class="form-group">
+      {{ form.game_name.label }} {{ form.game_name(class="form-control") }}
+    </div>
+    <div class="form-group">
+      {{ form.genre.label }} {{ form.genre(class="form-control") }}
+    </div>
+    <div class="form-group mt-2 mb-2">
+        {{ form.price.label }} {{ form.price(class="form-control") }}
+        {% if form.price.errors %}
+          {% for error in form.price.errors %}
+            <div class="alert alert-danger mt-2">{{ error }}</div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    {{ form.submit(class="btn btn-primary") }}
+  </form>
+
+  <h1 class="mt-5">Delete Game</h1>
+  <table class="table mt-5">
+    <thead>
+      <tr>
+        <th scope="col">Game Name</th>
+        <th scope="col">Genre</th>
+        <th scope="col">Price</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for game in games %}
+      <tr>
+        <td>{{ game.game_name }}</td>
+        <td>{{ game.genre }}</td>
+        <td>USD {{ game.price }}</td>
+        <td>
+          <form
+            method="POST"
+            action="{{ url_for('delete_game', game_id=game.game_id) }}"
+          >
+            <button type="submit" class="btn btn-danger">Delete</button>
+          </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}

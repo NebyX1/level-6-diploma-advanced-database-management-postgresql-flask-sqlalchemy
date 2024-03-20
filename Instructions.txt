@@ -1,0 +1,3 @@
+Generar un nuevo diagrama:
+    >python db_diagram_generator.py
+
