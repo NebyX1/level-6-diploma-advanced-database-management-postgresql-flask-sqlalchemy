@@ -1,3 +1,17 @@
+Instalar el creador de entornos virtuales:
+    >pip install virtualenv --user
+
+Crear el entorno virutal en la carpeta del proyecto:
+    >python -m virtualenv env
+
+Para activar el entorno virtual para empezar a trabajar(windows):
+    >venv\Scripts\activate
+
+Instalar todos los paquetes:
+    >pip install -r requirements.txt
+
 Generar un nuevo diagrama:
     >python db_diagram_generator.py
 
+Correr el servidor:
+    >python run.py
